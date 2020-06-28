@@ -1,23 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MVCSolution.Data;
 using MVCSolution.Models;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace MVCSolution.Controllers
 {
     public class PolicyController : Controller
     {
+        #region Private Variable Members
         private readonly ApiConnection _apiConnection;
+        #endregion
 
+        #region Constructor - Destructor - Finalizer
         public PolicyController(ApiConnection apiConnection)
         {
             _apiConnection = apiConnection;
         }
+        #endregion
+
+        #region Methods
 
         // GET: PolicyController
         public async Task<ActionResult> Index()
@@ -46,6 +49,8 @@ namespace MVCSolution.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Policy policy)
         {
+            if (policy.RiskType == RiskTypeEnum.High && policy.CoveragePercentage > 50)
+                policy.CoveragePercentage = 50;
 
             var postTask = _apiConnection.Client.PostAsJsonAsync<Policy>("policies", policy);
 
@@ -96,5 +101,6 @@ namespace MVCSolution.Controllers
             var rs = await _apiConnection.Client.DeleteAsync($"policies/{id}");
             return RedirectToAction(nameof(Index));
         }
+        #endregion
     }
 }

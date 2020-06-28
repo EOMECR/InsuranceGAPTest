@@ -26,7 +26,6 @@ namespace APISolution
         {
             services.AddControllers();
 
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
            .AddJwtBearer(options =>
            {
@@ -43,12 +42,7 @@ namespace APISolution
            });
 
             services.ConfigureRepositoryWrapper();
-
             services.AddDbContext<APISolutionContext>(options => options.UseInMemoryDatabase(databaseName: "APISolutionBD"));
-
-
-            //services.AddDbContext<APISolutionContext>(options =>
-            //       options.UseSqlServer(Configuration.GetConnectionString("EFDemoContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

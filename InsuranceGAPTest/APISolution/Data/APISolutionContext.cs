@@ -9,15 +9,17 @@ namespace APISolution.Data
 {
     public class APISolutionContext : DbContext
     {
-        public APISolutionContext(DbContextOptions<APISolutionContext> options)
-           : base(options)
-        {
-        }
+        #region Constructor - Destructor - Finalizer
+        public APISolutionContext(DbContextOptions<APISolutionContext> options): base(options) { }
+        #endregion
 
+        #region Properties
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Policy> Policies { get; set; }
         public DbSet<PolicyCustomer> PolicyCustomers { get; set; }
+        #endregion
 
+        #region Methods
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PolicyCustomer>()
@@ -33,5 +35,7 @@ namespace APISolution.Data
                 .WithMany(c => c.PolicyCustomers)
                 .HasForeignKey(pc => pc.PolicyID);
         }
+
+        #endregion
     }
 }

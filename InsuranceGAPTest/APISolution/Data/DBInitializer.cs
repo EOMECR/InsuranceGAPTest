@@ -22,34 +22,30 @@ namespace APISolution.Data
                 _context.Customers.AddRange(
                     new Customer
                     {
-                       Email = "Customer1@admin.com",
-                       Name = "UserOne",
-                       LastName = "Testing"
-                       //Id= 1
+                       Email = "juancagarita@admin.com",
+                       Name = "Juan Carlos",
+                       LastName = "Garita"                       
                     },
 
                     new Customer
                     {
-                        Email = "Customer2@admin.com",
-                        Name = "UserTwo",
-                        LastName = "Testing"
-                        //Id = 2
+                        Email = "EmiliaNavas@admin.com",
+                        Name = "Emilia Maria",
+                        LastName = "Navas"
                     },
 
                     new Customer
                     {
-                        Email = "Customer3@admin.com",
-                        Name = "UserThree",
-                        LastName = "Testing"
-                        //Id = 3
+                        Email = "Enrique@admin.com",
+                        Name = "Enrique Josue",
+                        LastName = "Morales"
                     },
 
                     new Customer
                     {
-                        Email = "Customer4@admin.com",
-                        Name = "UserFour",
-                        LastName = "Testing"
-                        //Id = 4
+                        Email = "KarlaVanessa@admin.com",
+                        Name = "Karla Vannessa",
+                        LastName = "Miranda"
                     }
                 );
 
@@ -61,12 +57,11 @@ namespace APISolution.Data
 
                 _context.Policies.AddRange(
                     new Policy
-                    {
-                       //Id = 1,
-                       Name = "Policy 1",
+                    {                      
+                       Name = "Riesgo Incendio",
                        CoveragePercentage = 15,
                        CoverageTime = 3,
-                       Description = "Demo Policy 1",
+                       Description = "Póliza de seguro contra incendio",
                        Price = 250.25f,
                        StartPolicyDateTime = DateTime.Parse("2020/01/03"),
                        RiskType = Policy.RiskTypeEnum.Low
@@ -74,15 +69,59 @@ namespace APISolution.Data
 
                      new Policy
                      {
-                         //Id = 2,
-                         Name = "Policy 2",
+                         Name = "Robo tipo 2",
                          CoveragePercentage = 45,
                          CoverageTime = 6,
-                         Description = "Demo Policy 2",
+                         Description = "Encapsula los riesgos de robo tipo 1 y 2",
                          Price = 120.26f,
                          StartPolicyDateTime = DateTime.Parse("2020/05/02"),
                          RiskType = Policy.RiskTypeEnum.Medium_High
+                     },
+                     new Policy
+                     {
+                         Name = "Desastres naturales",
+                         CoveragePercentage = 40,
+                         CoverageTime = 6,
+                         Description = "Sujeto a tipo de desastre",
+                         Price = 120.26f,
+                         StartPolicyDateTime = DateTime.Parse("2020/05/02"),
+                         RiskType = Policy.RiskTypeEnum.Medium_High
+                     },
+                     new Policy
+                     {
+                         Name = "Terremoto",
+                         CoveragePercentage = 75,
+                         CoverageTime = 12,
+                         Description = "Póliza de cobertura contra terremotos",
+                         Price = 120.26f,
+                         StartPolicyDateTime = DateTime.Parse("2020/05/02"),
+                         RiskType = Policy.RiskTypeEnum.Low 
                      }
+                );
+
+                // Add PolicyCustomers
+                if (_context.PolicyCustomers.Any())
+                {
+                    return;
+                }
+
+                _context.PolicyCustomers.AddRange(
+                    new PolicyCustomer
+                    {
+                       CustomerId =1,
+                       PolicyID = 1
+                    },
+
+                    new PolicyCustomer
+                    {
+                        CustomerId = 2,
+                        PolicyID = 1
+                    },
+                    new PolicyCustomer
+                    {
+                        CustomerId = 4,
+                        PolicyID = 2
+                    }
                 );
 
                 _context.SaveChanges();

@@ -1,18 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Session;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using MVCSolution.Data;
 
 namespace MVCSolution
@@ -34,7 +25,6 @@ namespace MVCSolution
             services.AddMemoryCache();
             services.AddSession();
             services.AddHttpClient<ApiConnection>();
-            services.AddSingleton<HttpClientSettings>();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
         }
 

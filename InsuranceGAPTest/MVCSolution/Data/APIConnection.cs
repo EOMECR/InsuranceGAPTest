@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace MVCSolution.Data
 {
     public class ApiConnection
     {
+        #region Properties
         public HttpClient Client { get; private set; }
+        #endregion
 
-        public ApiConnection(HttpClient httpClient, HttpClientSettings httpClientSettings, IHttpContextAccessor httpContextAccessor)
+        #region Constructor - Destructor - Finalizer
+        public ApiConnection(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
         {
             var bearerToken = httpContextAccessor.HttpContext.Session.GetString("JWToken");
 
@@ -23,5 +23,6 @@ namespace MVCSolution.Data
             httpClient.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");         
             Client = httpClient;
         }
+        #endregion
     }
 }

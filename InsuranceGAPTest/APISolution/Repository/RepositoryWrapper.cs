@@ -9,9 +9,14 @@ namespace APISolution.Repository
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
+        #region Private Variable Members
         private APISolutionContext _repoContext;
         private ICustomerRepository _customer;
         private IPolicyRepository _policy;
+        private IPolicyCustomerRepository _policyCustomer;
+        #endregion
+
+        #region Properties
         public ICustomerRepository Customer
         {
             get
@@ -36,14 +41,30 @@ namespace APISolution.Repository
             }
         }
 
+        public IPolicyCustomerRepository PolicyCustomer
+        {
+            get
+            {
+                if (_policyCustomer == null)
+                {
+                    _policyCustomer = new PolicyCustomerRepository(_repoContext);
+                }
+                return _policyCustomer;
+            }
+        }
+
         public RepositoryWrapper(APISolutionContext repositoryContext)
         {
             _repoContext = repositoryContext;
         }
+        #endregion
+
+        #region Methods
 
         public void Save()
         {
             _repoContext.SaveChanges();
         }
+        #endregion
     }
 }

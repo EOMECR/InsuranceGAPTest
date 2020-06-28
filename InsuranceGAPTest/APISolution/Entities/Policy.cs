@@ -12,18 +12,32 @@ namespace APISolution.Entities
     {
         [Key]
         public int Id { get; set; }
+
         [Column(TypeName = "varchar(50)")]
+        [Required]
         public string Name { get; set; }
+
         [Column(TypeName = "varchar(500)")]
+        [Required]
         public string Description { get; set; }
+
         [Column(TypeName = "int")]
+        [Required]
         public int CoveragePercentage { get; set; }
+
         [DataType(DataType.Date)]
+        [Required]
         public DateTime StartPolicyDateTime { get; set; }
+
         [Column(TypeName = "int")]
+        [Required]
         public int CoverageTime { get; set; }
+
         [Column(TypeName = "float")]
+        [Required]
         public float Price { get; set; }
+
+        [Required]
         public RiskTypeEnum RiskType { get; set; }
         public ICollection<PolicyCustomer> PolicyCustomers { get; set; }
 

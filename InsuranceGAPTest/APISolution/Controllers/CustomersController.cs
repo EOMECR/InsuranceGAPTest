@@ -11,12 +11,18 @@ namespace APISolution.Controllers
     [Authorize]
     public class CustomersController : ControllerBase
     {
+        #region Private Variable Member
         private IRepositoryWrapper _repository;
+        #endregion
 
+        #region Constructor - Destructor - Finalizer
         public CustomersController(IRepositoryWrapper repository)
         {
             _repository = repository;
         }
+        #endregion
+
+        #region Methods
 
         [HttpGet]
         public IActionResult Get()
@@ -69,6 +75,7 @@ namespace APISolution.Controllers
             _repository.Save();
             return Ok();
         }
+        #endregion
     }
 }
 

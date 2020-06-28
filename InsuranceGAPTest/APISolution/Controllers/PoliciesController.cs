@@ -11,13 +11,19 @@ namespace APISolution.Controllers
     [Authorize]
     public class PoliciesController : ControllerBase
     {
+        #region Private Variable Members
         private IRepositoryWrapper _repository;
+        #endregion
+
+        #region Constructor - Destructor - Finalizer
 
         public PoliciesController(IRepositoryWrapper repository)
         {
             _repository = repository;
         }
+        #endregion
 
+        #region
         [HttpGet]
         public IActionResult Get()
         {
@@ -69,5 +75,6 @@ namespace APISolution.Controllers
             _repository.Save();
             return Ok();
         }
+        #endregion
     }
 }

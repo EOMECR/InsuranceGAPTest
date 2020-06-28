@@ -10,6 +10,7 @@ namespace APISolution.Extensions
 {
     public static class ServiceExtension
     {
+        #region Methods
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
         {
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
@@ -25,5 +26,7 @@ namespace APISolution.Extensions
                     .AllowAnyHeader());
             });
         }
+
+        #endregion
     }
 }

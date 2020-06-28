@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MVCSolution.Data;
 using MVCSolution.Models;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace MVCSolution.Controllers
 {
     public class CustomerController : Controller
     {
-
+        #region Private Variable Members
         private readonly ApiConnection _apiConnection;
-  
+        #endregion
+
+        #region Constructor - Destructor - Finalizer
         public CustomerController(ApiConnection apiConnection)
         {
             _apiConnection = apiConnection;
         }
+        #endregion
 
+        #region Methods
         // GET: CustomerController
         public async Task<ActionResult> Index()
         {
@@ -97,5 +98,6 @@ namespace MVCSolution.Controllers
             var rs = await _apiConnection.Client.DeleteAsync($"customers/{id}");
             return RedirectToAction(nameof(Index));
         }
+        #endregion
     }
 }

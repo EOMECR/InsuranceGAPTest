@@ -10,12 +10,18 @@ namespace APISolution.Repository
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
+        #region Properties
         protected APISolutionContext  RepositoryContext { get; set; }
+        #endregion
+
+        #region Constructor - Destructor - Finalizer
         public RepositoryBase(APISolutionContext repositoryContext)
         {
             RepositoryContext = repositoryContext;
         }
+        #endregion
 
+        #region Methods
         public IQueryable<T> FindAll()
         {
             return RepositoryContext.Set<T>().AsNoTracking();
@@ -40,5 +46,6 @@ namespace APISolution.Repository
         {
             RepositoryContext.Set<T>().Remove(entity);
         }
+        #endregion
     }
 }
