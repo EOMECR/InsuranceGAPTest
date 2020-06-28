@@ -9,7 +9,6 @@ namespace APISolution.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    
     public class PoliciesController : ControllerBase
     {
         private IRepositoryWrapper _repository;

@@ -15,15 +15,24 @@ namespace MVCSolution.Controllers
 {
     public class HomeController : Controller
     {
-        HttpClient _apiService = new APIConnection().APIService();
-        public IActionResult Index()
+
+        private readonly ApiConnection _apiConnection;
+
+        public HomeController(ApiConnection apiConnection)
         {
+            _apiConnection = apiConnection;
+        }
+
+
+        public async Task <IActionResult> Index()
+        {
+            await LoginUser(new LoginModel() { Username = "Admin", Password = "Test2020" });
             return View();
         }
 
-        public async Task<IActionResult> LoginUser(LoginModel userCredentials)
+        public async Task LoginUser(LoginModel userCredentials)
         {
-            HttpResponseMessage rs = await _apiService.PostAsJsonAsync("login", userCredentials);
+            HttpResponseMessage rs = await _apiConnection.Client.PostAsJsonAsync("login", userCredentials);
 
             if (rs.IsSuccessStatusCode)
             {
@@ -32,7 +41,7 @@ namespace MVCSolution.Controllers
                 HttpContext.Session.SetString("JWToken", (string)responseJson["token"]);
 
             }
-            return Redirect("~/Home/Index");
+          //  return Redirect("~/Home/Index");
         }
 
         public IActionResult Logoff()

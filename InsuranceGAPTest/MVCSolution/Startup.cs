@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using MVCSolution.Data;
 
 namespace MVCSolution
 {
@@ -30,21 +31,11 @@ namespace MVCSolution
         {
             services.AddControllersWithViews();
             services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddMemoryCache();
             services.AddSession();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-          .AddJwtBearer(options =>
-          {
-              options.TokenValidationParameters = new TokenValidationParameters
-              {
-                  ValidateIssuer = true,
-                  ValidateAudience = true,
-                  ValidateLifetime = true,
-                  ValidateIssuerSigningKey = true,
-                  ValidIssuer = Configuration["Jwt:Issuer"],
-                  ValidAudience = Configuration["Jwt:Issuer"],
-                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-              };
-          });
+            services.AddHttpClient<ApiConnection>();
+            services.AddSingleton<HttpClientSettings>();
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,20 +53,12 @@ namespace MVCSolution
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseRouting();
+            app.UseRouting();            
             app.UseAuthorization();
-            app.UseAuthentication();
             app.UseSession();
-
-
 
             app.Use(async (context, next) =>
             {
-                var JWToken = context.Session.GetString("JWToken");
-                if (!string.IsNullOrEmpty(JWToken))
-                {
-                    context.Request.Headers.Add("Authorization", "Bearer " + JWToken);
-                }
                 await next();
             });
 

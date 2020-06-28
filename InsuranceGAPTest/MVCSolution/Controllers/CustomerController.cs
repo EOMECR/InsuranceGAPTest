@@ -12,14 +12,19 @@ namespace MVCSolution.Controllers
 {
     public class CustomerController : Controller
     {
-       
-        HttpClient _apiService = new APIConnection().APIService();
+
+        private readonly ApiConnection _apiConnection;
+  
+        public CustomerController(ApiConnection apiConnection)
+        {
+            _apiConnection = apiConnection;
+        }
 
         // GET: CustomerController
         public async Task<ActionResult> Index()
         {
             List<Customer> customers = new List<Customer>();
-            HttpResponseMessage rs = await _apiService.GetAsync("customers");
+            HttpResponseMessage rs = await _apiConnection.Client.GetAsync("customers");
 
             if (rs.IsSuccessStatusCode)
             {
@@ -43,7 +48,7 @@ namespace MVCSolution.Controllers
         public ActionResult Create(Customer customer)
         {
 
-            var postTask = _apiService.PostAsJsonAsync<Customer>("customers", customer);
+            var postTask = _apiConnection.Client.PostAsJsonAsync<Customer>("customers", customer);
 
             postTask.Wait();
             var results = postTask.Result;
@@ -59,7 +64,7 @@ namespace MVCSolution.Controllers
         public async Task<ActionResult> Edit(int id)
         {
             Customer customer = new Customer();
-            HttpResponseMessage rs = await _apiService.GetAsync($"customers/{id}");
+            HttpResponseMessage rs = await _apiConnection.Client.GetAsync($"customers/{id}");
 
             if (rs.IsSuccessStatusCode)
             {
@@ -75,7 +80,7 @@ namespace MVCSolution.Controllers
         [HttpPost]
         public ActionResult Edit(Customer customer)
         {
-            var postTask = _apiService.PutAsJsonAsync<Customer>("customers", customer);
+            var postTask = _apiConnection.Client.PutAsJsonAsync<Customer>("customers", customer);
 
             postTask.Wait();
             var results = postTask.Result;
@@ -89,7 +94,7 @@ namespace MVCSolution.Controllers
         // GET: CustomerController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            var rs = await _apiService.DeleteAsync($"customers/{id}");
+            var rs = await _apiConnection.Client.DeleteAsync($"customers/{id}");
             return RedirectToAction(nameof(Index));
         }
     }

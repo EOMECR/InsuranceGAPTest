@@ -12,14 +12,18 @@ namespace MVCSolution.Controllers
 {
     public class PolicyController : Controller
     {
-       
-        HttpClient _apiService = new APIConnection().APIService();
+        private readonly ApiConnection _apiConnection;
+
+        public PolicyController(ApiConnection apiConnection)
+        {
+            _apiConnection = apiConnection;
+        }
 
         // GET: PolicyController
         public async Task<ActionResult> Index()
         {
             List<Policy > policies = new List<Policy>();
-            HttpResponseMessage rs = await _apiService.GetAsync("policies");
+            HttpResponseMessage rs = await _apiConnection.Client.GetAsync("policies");
 
             if (rs.IsSuccessStatusCode)
             {
@@ -43,7 +47,7 @@ namespace MVCSolution.Controllers
         public ActionResult Create(Policy policy)
         {
 
-            var postTask = _apiService.PostAsJsonAsync<Policy>("policies", policy);
+            var postTask = _apiConnection.Client.PostAsJsonAsync<Policy>("policies", policy);
 
             postTask.Wait();
             var results = postTask.Result;
@@ -59,7 +63,7 @@ namespace MVCSolution.Controllers
         public async Task<ActionResult> Edit(int id)
         {
             Policy policy = new Policy();
-            HttpResponseMessage rs = await _apiService.GetAsync($"Policies/{id}");
+            HttpResponseMessage rs = await _apiConnection.Client.GetAsync($"Policies/{id}");
 
             if (rs.IsSuccessStatusCode)
             {
@@ -75,7 +79,7 @@ namespace MVCSolution.Controllers
         [HttpPost]
         public ActionResult Edit(Policy policy)
         {
-            var postTask = _apiService.PutAsJsonAsync<Policy>("Policies", policy);
+            var postTask = _apiConnection.Client.PutAsJsonAsync<Policy>("Policies", policy);
 
             postTask.Wait();
             var results = postTask.Result;
@@ -89,7 +93,7 @@ namespace MVCSolution.Controllers
         // GET: PolicyController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {            
-            var rs = await _apiService.DeleteAsync($"policies/{id}");
+            var rs = await _apiConnection.Client.DeleteAsync($"policies/{id}");
             return RedirectToAction(nameof(Index));
         }
     }

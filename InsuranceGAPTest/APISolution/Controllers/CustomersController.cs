@@ -1,5 +1,6 @@
 ﻿using APISolution.Contracts;
 using APISolution.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -7,7 +8,7 @@ namespace APISolution.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [Authorize]
     public class CustomersController : ControllerBase
     {
         private IRepositoryWrapper _repository;
