@@ -1,0 +1,64 @@
+﻿@model MVCSolution.Models.Policy
+
+@{
+    ViewData["Title"] = "Create Policy";
+}
+
+<h1>Create new Insurance Policy</h1>
+
+<h4>Insurance Policy</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoveragePercentage" class="control-label"></label>
+                <input asp-for="CoveragePercentage" class="form-control" />
+                <span asp-validation-for="CoveragePercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartPolicyDateTime" class="control-label"></label>
+                <input asp-for="StartPolicyDateTime" class="form-control" />
+                <span asp-validation-for="StartPolicyDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoverageTime" class="control-label"></label>
+                <input asp-for="CoverageTime" class="form-control" />
+                <span asp-validation-for="CoverageTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RiskType" class="control-label"></label>
+                @Html.DropDownListFor(m => m.RiskType, new SelectList(Enum.GetValues(typeof(RiskTypeEnum))),
+                    "  Select Risk Type  ")
+                <span asp-validation-for="RiskType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

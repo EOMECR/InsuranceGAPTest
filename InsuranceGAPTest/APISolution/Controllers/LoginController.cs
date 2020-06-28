@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using APISolution.Entities;
+﻿using APISolution.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace APISolution.Controllers
 {
@@ -47,19 +43,19 @@ namespace APISolution.Controllers
             return response;
         }
 
-        private Users AuthenticateUser(LoginModel login)
+        private User AuthenticateUser(LoginModel login)
         {
-            Users user = null;
+            User user = null;
 
             if (login.Username == "Admin" && login.Password == "Test2020")
             {
-                user = new Users { Name = "Administrator", Email = "Administrator@domain.com", Birthdate = new DateTime(1983, 9, 23) };
+                user = new User { Name = "Administrator", Email = "Administrator@domain.com", Birthdate = new DateTime(1983, 9, 23) };
             }
 
             return user;
         }
 
-        private string GenerateJSONWebToken(Users user)
+        private string GenerateJSONWebToken(User user)
         {
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Name),

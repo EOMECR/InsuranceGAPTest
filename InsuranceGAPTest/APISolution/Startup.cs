@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using APISolution.Data;
+using APISolution.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace APISolution
 {
@@ -29,6 +25,8 @@ namespace APISolution
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
            .AddJwtBearer(options =>
            {
@@ -43,6 +41,14 @@ namespace APISolution
                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                };
            });
+
+            services.ConfigureRepositoryWrapper();
+
+            //services.AddDbContext<APISolutionContext>(options => options.UseInMemoryDatabase(databaseName: "APISolutionBD"));
+
+
+            services.AddDbContext<APISolutionContext>(options =>
+                   options.UseSqlServer(Configuration.GetConnectionString("EFDemoContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,8 +64,7 @@ namespace APISolution
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseAuthentication();
-
+            app.UseAuthentication();            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

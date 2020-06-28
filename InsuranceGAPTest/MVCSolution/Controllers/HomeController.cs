@@ -2,36 +2,44 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MVCSolution.Data;
 using MVCSolution.Models;
+using Newtonsoft.Json.Linq;
 
 namespace MVCSolution.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
+        HttpClient _apiService = new APIConnection().APIService();
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> LoginUser(LoginModel userCredentials)
         {
-            return View();
+            HttpResponseMessage rs = await _apiService.PostAsJsonAsync("login", userCredentials);
+
+            if (rs.IsSuccessStatusCode)
+            {
+                var results = await rs.Content.ReadAsStringAsync();
+                var responseJson = JObject.Parse(results);
+                HttpContext.Session.SetString("JWToken", (string)responseJson["token"]);
+
+            }
+            return Redirect("~/Home/Index");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Logoff()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            HttpContext.Session.Clear();
+            return Redirect("~/Home/Index");
+
         }
     }
 }
