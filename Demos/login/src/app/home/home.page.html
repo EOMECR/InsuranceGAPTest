@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Facebook Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-button class ="facebook" (click)="loginFacebook()" >
+    <ion-icon name="logo-facebook"></ion-icon>
+  </ion-button>
+  <ion-card *ngIf="userData">
+    <ion-card-header>Username: {{ userData.username }}</ion-card-header>
+    <ion-avatar>
+      <img [src] ="userData.picture">
+    </ion-avatar>
+    <ion-card-content>
+        <p>Email: {{ userData.email }}</p>
+        <p>First Name: {{ userData.first_name }}</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-button class ="google"  (click)="googleLogin()" >
+  <ion-icon name="logo-google"></ion-icon>
+  </ion-button>
+  <ion-card *ngIf="userDataG">
+    <ion-card-header></ion-card-header>
+    <ion-avatar>
+    <img [src] = userDataG.imageUrl>
+  </ion-avatar>
+    <ion-card-content>
+        <p>Email:{{ userDataG.email }} </p>
+        <p>Full Name: {{ userDataG.displayName }}</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-button class ="twitter"  (click)="twitterLogin()">
+  <ion-icon name="logo-twitter"></ion-icon>
+  </ion-button>
+  <ion-card *ngIf="userDataT">
+    <ion-card-header></ion-card-header>
+    <ion-avatar>
+    <img [src] = "userDataT.profile_image_url">
+  </ion-avatar>
+    <ion-card-content>
+        <p>Name: {{ userDataT.name }}</p>
+        <p>Username: {{ userDataT.screen_name }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
