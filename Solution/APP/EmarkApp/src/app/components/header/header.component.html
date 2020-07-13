@@ -1,0 +1,21 @@
+<ion-header no-border>
+  <ion-toolbar class="bg-navbar">
+    <ion-buttons slot="start">
+      <ion-button *ngIf=" iconos != 0">
+        <ion-icon class = "iconHeader" name="menu"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf=" iconos == 0" (click) = "irPagina1()">
+        <ion-icon class = "iconHeader" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="titleHeader" ><ion-icon  name="cart-outline"></ion-icon>{{titulo}}</ion-title>
+    <ion-buttons slot="primary" *ngIf=" iconos != 0">
+      <ion-button>
+        <ion-icon class = "iconHeader" name="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon  class = "iconHeader" name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    </ion-toolbar>
+</ion-header>
