@@ -1,14 +1,17 @@
-<ion-header no-border>
-  <ion-toolbar class="bg-navbar">
+<ion-header id="header" no-border>
+  <ion-toolbar id="toolbar" class="toolbarHeader">
     <ion-buttons slot="start">
-      <ion-button *ngIf=" iconos != 0">
+      <div  *ngIf=" iconos != 0">
+         <ion-button (click)="abrirMenuHamburguesa()">
         <ion-icon class = "iconHeader" name="menu"></ion-icon>
       </ion-button>
+      </div>
       <ion-button *ngIf=" iconos == 0" (click) = "irPagina1()">
         <ion-icon class = "iconHeader" name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title class="titleHeader" ><ion-icon  name="cart-outline"></ion-icon>{{titulo}}</ion-title>
+    
     <ion-buttons slot="primary" *ngIf=" iconos != 0">
       <ion-button>
         <ion-icon class = "iconHeader" name="notifications-outline"></ion-icon>
@@ -19,3 +22,29 @@
     </ion-buttons>
     </ion-toolbar>
 </ion-header>
+<ion-router-outlet id="menu_content"></ion-router-outlet>
+<ion-menu side="start" id="my-custom-menu" menuId="hambuerguesa" content-id="menu_content" *ngIf=" iconos != 0">
+  <ion-header>
+    <ion-toolbar id="toolbar_menu">
+      <ion-item lines="full" color="blank">
+        <ion-avatar slot="start">
+          <img src="https://unalab.eu/sites/default/files/2019-08/Blank.png"/>
+        </ion-avatar>
+        <ion-label id="titulo_lista">{{usuarioNombre}}</ion-label>
+      </ion-item>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content id="content_menu">
+    <ion-list class="list">
+      <ion-item lines="none" (click)="irPerfilPagina()" class="item_menu">
+        <ion-label>Mi perfil</ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="irCarritoPagina()"  class="item_menu">
+        <ion-label>Carrito Compras</ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="irPedidosPagina()" class="item_menu">
+        <ion-label>Pedidos</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

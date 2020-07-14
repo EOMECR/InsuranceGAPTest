@@ -1,5 +1,7 @@
 {
   "name": "EmarkApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

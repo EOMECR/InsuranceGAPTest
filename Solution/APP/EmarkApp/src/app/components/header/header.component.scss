@@ -2,10 +2,45 @@
 {
     color: black;
 }
+.toolbarHeader
+{
+    --background:#7CFBD7;
+}
 .titleHeader
 {
     color: black;
     font-family:Arial, Helvetica, sans-serif;
     text-align: left;
     font-size: 130%;
+}
+#my-custom-menu {
+    top: 8.8%;
+    
+}
+#content_menu{
+    --background: #404240;
+    --offset-bottom: 0px;
+   
+}
+.item_menu{
+    --background: #404240;
+    --color: white;
+}
+#header{
+    height: 8.8%;
+}
+#toolbar{
+    position: relative;
+    height: 100%;
+}
+
+#toolbar_menu{
+    --background:  #404240;
+}
+
+.list{  
+    padding: 0px;
+}
+#titulo_lista{
+    color: white;
 }
