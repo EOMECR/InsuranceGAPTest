@@ -1,0 +1,114 @@
+#content{
+    position: absolute;
+    --background: white;
+    width: 100%;
+    height: 100%;
+}
+#contenedor_direccion{
+    position: relative;
+    width: 100%;
+    height: 7%;
+}
+#chip_ubicacion{
+    position: relative;
+    --background: #CFCFCF;
+    color: black;
+}
+#icono_ubicacion{
+    position: relative;
+    --color: black;
+    float: right;
+}
+.icono_hamburguesa{
+    position: relative;
+    float: right;
+    color: black;
+    right: 10px;
+}
+#contenedor_ordenar{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 4%;
+    background-color: #E4E4E4;
+}
+#hijo_ordenar{
+    position: relative;
+    width: 100%;
+}
+.content_ordenar{
+    font-size: 16px;
+    color: black;
+    float: right;   
+    margin-right: 1%;
+}
+#icono_ordenar{
+    font-size: 20px;
+}
+#menu_categorias{
+    position: absolute;
+    height: 100%;
+   --width: 100%;
+}
+#contenedorcategoria{
+    --background: white;
+}
+#header_lista{
+    --background: blue;
+}
+#contenedor_header_lista{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    top: 0px;
+}
+#contenedor_lista_productos{
+    position: absolute;
+    width: 100%;
+    margin-top: 4%;
+    background-color: #E4E4E4;
+    margin-bottom: 120px;
+}
+
+.contenedor_productos{
+    position: relative;
+    width: 100%;
+}
+.contenedor_columa_productos{
+    position: relative;
+    color: black;
+    font-size: small;
+    font-weight: bold;
+    background-color: white;
+    margin-left: 2.5%;
+    margin-bottom: 2.5%;
+    border-radius: 8%;
+    width: 100%;
+    height: 280px;
+}
+
+.contenedor_imagen_producto{
+    position: relative;
+    width: 100%;
+    height: 80%;
+}
+.imagen_producto{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-position: center center;
+}
+
+.contenedor_valoracion_producto{
+    position: relative;
+    width: 50%;
+    height: 9%;
+    float: right;
+    right: -9%;
+}
+
+.iconos_valoracion{
+    color: #E0BA33;
+}

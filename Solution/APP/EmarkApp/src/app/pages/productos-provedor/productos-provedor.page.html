@@ -1,0 +1,60 @@
+<body ng-app="starter">
+  <app-header titulo = "Emark" iconos ="1" usuarioNombre ="Nombre Usuario" fotoPerfil="sin-foto.png"></app-header>
+  <app-searchbar></app-searchbar>
+  <ion-content id="content">
+    <div id="contenedor_direccion">
+      <div id="hijo_direccion">
+      <ion-chip id="chip_ubicacion">
+        <ion-label >Dirección - {{direccion}}</ion-label>
+        <ion-icon id="icono_ubicacion" name="location-sharp"></ion-icon>
+      </ion-chip>
+        <ion-icon size="large" (click)="abrirMenuCategorias()" class="icono_hamburguesa" name="menu"></ion-icon>
+      </div>
+    </div>
+    <div id="contenedor_ordenar">
+      <div id="hijo_ordenar">
+        <ion-icon id="icono_ordenar" class="content_ordenar" name="caret-forward-circle-outline"></ion-icon>
+        <label class="content_ordenar">Ordenar por</label>
+      </div>
+    </div>
+   
+    <ion-list id="contenedor_lista_productos">
+      <ion-grid fixed="true" class="">
+        <ion-row>
+          <ion-col size="5.6" class="contenedor_columa_productos" *ngFor="let pro of products">
+              <div class="contenedor_imagen_producto">
+                <img class="imagen_producto" src="{{pro.url}}"/>
+              </div>
+              <ion-label>{{pro.nombre}}</ion-label>
+              <br>
+              <ion-label style="font-weight: normal;">CRC{{pro.precio}}</ion-label>
+              <div class="contenedor_valoracion_producto">
+                <ion-icon class="iconos_valoracion" *ngFor="let icon of valoracion(pro.valoracion)" name="{{icon.icon}}"></ion-icon>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-infinite-scroll  threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content  loading-spinner="crescent" loading-text="Cargando...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-list>
+    <ion-menu side="end" id="menu_categorias" menu-id="menu_categorias" content-id="contenedorcategoria">
+      <ion-content id="contenedorcategoria">
+        <ion-list>
+          <ion-list-header id="header_lista">
+            <div id="contenedor_header_lista">
+              <ion-label>Categorias</ion-label>
+              <ion-icon size="large" (click)="abrirMenuCategorias()" class="icono_hamburguesa" name="menu"></ion-icon>
+            </div>
+          </ion-list-header>
+          <ion-menu-toggle auto-hide="true" *ngFor="let item of categorias">
+            <ion-item *ngFor="let i of subcategorias">
+              <ion-label>{{i.nombre}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+  </ion-content>  
+</body>
