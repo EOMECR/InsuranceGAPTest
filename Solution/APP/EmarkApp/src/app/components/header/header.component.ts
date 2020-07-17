@@ -10,7 +10,6 @@ export class HeaderComponent {
 
   isOpen=true;
   constructor(public router:Router, private menu: MenuController) {  }
-  @Input() titulo:string;
   @Input() usuarioNombre:string;
   @Input() iconos:string;
   @Input() fotoPerfil:string;
