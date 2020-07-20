@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuController, IonInfiniteScroll } from '@ionic/angular';
+<<<<<<< Updated upstream
 import { Router } from '@angular/router';
+=======
+import { Router, NavigationExtras } from '@angular/router';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-productos-provedor',
@@ -13,8 +17,14 @@ export class ProductosProvedorPage implements OnInit {
   products: Array<{id: number, idSubcategoria: number, nombre: string, precio: string, valoracion: number, url: string }>
   categorias: Array<{id: number, nombre: string}>;
   subcategorias: Array<{id: number, idCategoria: number, nombre: string}>;
+<<<<<<< Updated upstream
   isClose = false;
   constructor(private menu: MenuController) {
+=======
+  isClose = true;
+  estaAbiertoOrdenarPor=false;
+  constructor(private menu: MenuController, private router: Router) {
+>>>>>>> Stashed changes
 
     this.categorias=[
       {id: 1, nombre: "Materiales"},
@@ -24,7 +34,12 @@ export class ProductosProvedorPage implements OnInit {
       {id: 1, idCategoria: 2, nombre: "Martillo"},
       {id: 2, idCategoria: 2, nombre: "Taladro"},
       {id: 3, idCategoria: 2, nombre: "Guantes"},
+<<<<<<< Updated upstream
       {id: 4, idCategoria: 2, nombre: "Lentes"}
+=======
+      {id: 4, idCategoria: 2, nombre: "Lentes"},
+      {id: 5, idCategoria: 1, nombre: "Aluminio"}
+>>>>>>> Stashed changes
     ];
     this.products =[
       {id: 1, idSubcategoria: 1, nombre: "Martillo Stanley", precio: "5.000", valoracion: 2.5,
@@ -46,6 +61,7 @@ export class ProductosProvedorPage implements OnInit {
 
   ngOnInit() {
   }
+<<<<<<< Updated upstream
   async abrirMenuCategorias(){
     alert("entra");
     if(!this.isClose){
@@ -54,6 +70,29 @@ export class ProductosProvedorPage implements OnInit {
     }else{
       await this.menu.close("menu_categorias");
       this.isClose =true;
+=======
+
+  irPaginaDetalleProducto(idProducto){
+    let datos : NavigationExtras={
+      queryParams: {
+        productId : JSON.stringify(idProducto)
+      }
+    };
+    this.router.navigate(["detalle-producto"], datos);
+  }
+
+  abrirMenuCategorias(){
+    var lista = document.getElementById("contenedor_lista_productos");
+    if(this.isClose){
+      this.menu.enable(true,"menu_categorias");
+      this.menu.open("menu_categorias");
+      this.isClose =false;
+      lista.style.display="none";
+    }else{
+      this.menu.close("menu_categorias");
+      this.isClose =true;
+      lista.style.display="block";
+>>>>>>> Stashed changes
     }
     
   }
@@ -104,4 +143,55 @@ export class ProductosProvedorPage implements OnInit {
     
     }, 1000);
   }
+<<<<<<< Updated upstream
+=======
+
+  hola(){
+    var ordenarContenedor = document.getElementById("lista_ordenar");
+    var iconoOrdenar = document.getElementById("icono_ordenar");
+    if(!this.estaAbiertoOrdenarPor){
+      ordenarContenedor.style.display="block";
+      iconoOrdenar.style.transform="rotate(90deg)";
+      this.estaAbiertoOrdenarPor=true;
+    }else{
+      ordenarContenedor.style.display="none";
+      iconoOrdenar.style.transform="rotate(0deg)";
+      this.estaAbiertoOrdenarPor=false;
+    }
+  }
+
+  voltearIconoCategoria(id){
+    var iconoOrdenar = document.getElementById("iconoCategoria"+id);
+    var estado = (<HTMLInputElement>document.getElementById("input_estado_categoria"+id));
+    var subcategorias = document.getElementById("contenedor_subcategorias"+id);
+    if(estado.value=="0"){
+      iconoOrdenar.style.transform="rotate(90deg) translate(4.5px,0)";
+     
+      subcategorias.style.display="block";
+      estado.value="1";
+    }else{
+      iconoOrdenar.style.transform="rotate(0deg)";
+      estado.value="0";
+      subcategorias.style.display="none";
+    }
+     
+  
+}
+cerrarMenuCategoriaHeader(){
+  var lista = document.getElementById("contenedor_lista_productos");
+  this.menu.close("menu_categorias");
+  this.isClose =true;
+  lista.style.display="block";
+}
+
+obtenerSubcategorias(idCategoria){
+  var subcategorias : Array<{id: number, idCategoria: number, nombre: string}>=[];
+  for(var a =0; a<this.subcategorias.length; a++){
+    if(this.subcategorias[a].idCategoria == idCategoria){
+      subcategorias.push(this.subcategorias[a]);
+    }
+  }
+  return subcategorias;
+}
+>>>>>>> Stashed changes
 }
