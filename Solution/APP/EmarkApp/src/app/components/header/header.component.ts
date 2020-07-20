@@ -35,10 +35,18 @@ export class HeaderComponent {
     var x = screen.width/2;
     document.getElementById("my-custom-menu").style.width = x+x/3+"px";
     if(this.isOpen){
-      await this.menu.open();
+<<<<<<< Updated upstream
+      await this.menu.enable(true, 'hambuerguesa');
+      await this.menu.open('hambuerguesa');
       this.isOpen=false;
     }else if(!this.isOpen){
-      await this.menu.close();
+      await this.menu.close('hambuerguesa');
+=======
+      await this.menu.open("hambuerguesa");
+      this.isOpen=false;
+    }else if(!this.isOpen){
+      await this.menu.close("hambuerguesa");
+>>>>>>> Stashed changes
       this.isOpen=true;
     }
     

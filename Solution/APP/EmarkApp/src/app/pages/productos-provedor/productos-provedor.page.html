@@ -1,0 +1,109 @@
+<body ng-app="starter">
+  <app-header titulo = "Emark" iconos ="1" usuarioNombre ="Nombre Usuario" fotoPerfil="sin-foto.png"></app-header>
+  <app-searchbar></app-searchbar>
+  <ion-content id="content">
+    <div id="contenedor_direccion">
+      <div id="hijo_direccion">
+      <ion-chip id="chip_ubicacion">
+<<<<<<< Updated upstream
+        <ion-label >Dirección - {{direccion}}</ion-label>
+=======
+        <ion-label >Dirección - <strong>{{direccion}}</strong></ion-label>
+>>>>>>> Stashed changes
+        <ion-icon id="icono_ubicacion" name="location-sharp"></ion-icon>
+      </ion-chip>
+        <ion-icon size="large" (click)="abrirMenuCategorias()" class="icono_hamburguesa" name="menu"></ion-icon>
+      </div>
+    </div>
+    <div id="contenedor_ordenar">
+      <div id="hijo_ordenar">
+<<<<<<< Updated upstream
+        <ion-icon id="icono_ordenar" class="content_ordenar" name="caret-forward-circle-outline"></ion-icon>
+        <label class="content_ordenar">Ordenar por</label>
+      </div>
+    </div>
+   
+    <ion-list id="contenedor_lista_productos">
+      <ion-grid fixed="true" class="">
+        <ion-row>
+          <ion-col size="5.6" class="contenedor_columa_productos" *ngFor="let pro of products">
+=======
+        <ion-icon id="icono_ordenar" (click)="hola()"  class="content_ordenar" name="caret-forward-circle-outline"></ion-icon>
+        <label class="content_ordenar" (click)="hola()">Ordenar por</label>
+      </div>
+    </div>
+   <div id="lista_ordenar">
+    <ion-item lines="full"  class="item_ordenar">Precio - mas bajo a mas alto</ion-item>
+    <ion-item lines="full"  class="item_ordenar">Precio - mas alto a mas bajo</ion-item>
+    <ion-item lines="full"  class="item_ordenar">Me gusta - mas bajo a mas alto</ion-item>
+    <ion-item lines="full"  class="item_ordenar">Me gusta - mas alto a mas bajo</ion-item>
+   </div>
+    <ion-list id="contenedor_lista_productos">
+      <ion-grid fixed="true" class="">
+        <ion-row>
+          <ion-col (click)="irPaginaDetalleProducto(pro.id)" size="5.6"  class="contenedor_columa_productos" *ngFor="let pro of products">
+>>>>>>> Stashed changes
+              <div class="contenedor_imagen_producto">
+                <img class="imagen_producto" src="{{pro.url}}"/>
+              </div>
+              <ion-label>{{pro.nombre}}</ion-label>
+              <br>
+              <ion-label style="font-weight: normal;">CRC{{pro.precio}}</ion-label>
+              <div class="contenedor_valoracion_producto">
+                <ion-icon class="iconos_valoracion" *ngFor="let icon of valoracion(pro.valoracion)" name="{{icon.icon}}"></ion-icon>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-infinite-scroll  threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content  loading-spinner="crescent" loading-text="Cargando...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-list>
+<<<<<<< Updated upstream
+    <ion-menu side="end" id="menu_categorias" menu-id="menu_categorias" content-id="contenedorcategoria">
+      <ion-content id="contenedorcategoria">
+        <ion-list>
+          <ion-list-header id="header_lista">
+            <div id="contenedor_header_lista">
+              <ion-label>Categorias</ion-label>
+              <ion-icon size="large" (click)="abrirMenuCategorias()" class="icono_hamburguesa" name="menu"></ion-icon>
+            </div>
+          </ion-list-header>
+          <ion-menu-toggle auto-hide="true" *ngFor="let item of categorias">
+            <ion-item *ngFor="let i of subcategorias">
+              <ion-label>{{i.nombre}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+=======
+    <ion-menu (ionDidClose)="cerrarMenuCategoriaHeader()" swipeGesture="false" side="end" id="menu_categorias" menu-id="menu_categorias" content-id="contenedorcategoria">
+      <ion-content id="contenedorcategoria">
+        <ion-list id="lista_categoria">
+          <ion-item class="item_menu_categoria">
+              <ion-label>Categorias</ion-label>
+              <ion-button fill="clear" id="menu_categoria_menu" (click)="abrirMenuCategorias()" >
+                <ion-icon size="large" name="menu"></ion-icon>
+              </ion-button> 
+          </ion-item>
+          <div *ngFor="let item of categorias" style="background-color: white;">
+            <ion-item   lines="none" class="item_menu_categoria">
+              <ion-button fill="none" (click)="voltearIconoCategoria(item.id)"> 
+                  <ion-label id="labelMensajeCategoria" >{{item.nombre}}
+                  <ion-icon id="iconoCategoria{{item.id}}" class="icono_flecha_categoria" name="caret-forward-circle-outline"></ion-icon>
+                  </ion-label>
+               </ion-button>
+               <input id="input_estado_categoria{{item.id}}" type="hidden" value="0">
+              
+            </ion-item>
+            <div id="contenedor_subcategorias{{item.id}}" class="contenedor_subcategorias">
+              <div class="item_menu_subcategoria" *ngFor="let sub of obtenerSubcategorias(item.id)">
+                <ion-label class="titulo_subcategoria">{{sub.nombre}}</ion-label>
+              </div>
+             </div>
+          </div>
+>>>>>>> Stashed changes
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+  </ion-content>  
+</body>

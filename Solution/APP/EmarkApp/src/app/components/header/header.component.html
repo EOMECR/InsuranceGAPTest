@@ -2,9 +2,9 @@
   <ion-toolbar id="toolbar" class="bg-navbar">
     <ion-buttons slot="start">
       <div  *ngIf=" iconos != 0">
-         <ion-button (click)="abrirMenuHamburguesa()">
-        <ion-icon class = "iconHeader" name="menu"></ion-icon>
-      </ion-button>
+        <ion-button (click)="abrirMenuHamburguesa()">
+          <ion-icon class = "iconHeader" name="menu"></ion-icon>
+        </ion-button>
       </div>
       <ion-button *ngIf=" iconos == 0" (click) = "irPagina1()">
         <ion-icon class = "iconHeader" name="arrow-back-outline"></ion-icon>
@@ -24,7 +24,7 @@
     </ion-toolbar>
 </ion-header>
 <ion-router-outlet id="menu_content"></ion-router-outlet>
-<ion-menu side="start" id="my-custom-menu" menuId="hambuerguesa" content-id="menu_content" *ngIf=" iconos != 0">
+<ion-menu side="start" id="my-custom-menu" menu-id="hambuerguesa" content-id="menu_content" *ngIf=" iconos != 0">
   <ion-header>
     <ion-toolbar id="toolbar_menu">
       <ion-item lines="full" color="blank">
