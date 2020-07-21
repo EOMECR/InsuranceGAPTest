@@ -1,0 +1,188 @@
+#content{
+    position: absolute;
+    --background: white;
+    width: 100%;
+    height: 100%;
+    overflow-y:hidden;
+}
+#contenedor_direccion{
+    position: absolute;
+    width: 100%;
+    height: 6%;
+}
+#hijo_direccion{
+    background-color: white;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+#chip_ubicacion{
+    position: relative;
+    --background: #CFCFCF;
+    color: black;
+}
+#icono_ubicacion{
+    position: relative;
+    --color: black;
+    float: right;
+}
+.icono_hamburguesa{
+    position: relative;
+    color: black;
+    float: right;
+}
+#contenedor_ordenar{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 4%;
+    top: 7%;
+    background-color: #E4E4E4;
+}
+#hijo_ordenar{
+    position: relative;
+    width: 100%;
+}
+.content_ordenar{
+    position: relative;
+    font-size: 16px;
+    color: #757575;
+    float: right;   
+    margin-left: 5px;
+    right: 4%;
+}
+#icono_ordenar{
+    font-size: 20px;
+}
+#menu_categorias{
+    position: absolute;
+    height: 100%;
+   --width: 100%;
+    padding: 0px;
+}
+#contenedorcategoria{
+    --background: white;
+}
+#header_lista{
+    --background: white;
+}
+#contenedor_header_lista{
+    position: relative;
+    color: black;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    top: 0px;
+}
+#contenedor_lista_productos{
+    position: absolute;
+    width: 100%;
+    top: 12%;
+    background-color: #E4E4E4;
+    margin-bottom: 120px;
+}
+
+.contenedor_productos{
+    position: relative;
+    width: 100%;
+}
+.contenedor_columa_productos{
+    position: relative;
+    color: black;
+    font-size: smaller;
+    font-weight: bold;
+    background-color: white;
+    margin-left: 2.5%;
+    margin-bottom: 2.5%;
+    border-radius: 8%;
+    width: 100%;
+    height: 190px;
+}
+
+.contenedor_imagen_producto{
+    position: relative;
+    width: 100%;
+    height: 68%;
+}
+.imagen_producto{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-position: center center;
+}
+
+.contenedor_valoracion_producto{
+    position: relative;
+    width: 50%;
+    height: 9%;
+    float: right;
+    right: -9%;
+}
+
+.iconos_valoracion{
+    color: #E0BA33;
+}
+
+#menu_categoria_menu{
+    position: relative;
+    float: right;
+    right: -10px;
+    color: black;
+    --border: none;
+}
+
+.item_menu_categoria{
+    --background: white;
+    color: #757575;
+    padding: 0px;
+}
+
+#lista_categoria{
+    padding: 0px;
+}
+
+.icono_flecha_categoria{
+    color: #757575;
+    font-size: 20px;
+}
+#labelMensajeCategoria{
+position: relative;
+ display: flex;   
+ color: #757575;
+ align-items: center;
+ height: 100%;
+}
+#lista_ordenar{
+    position: relative;
+    float: right;
+    top: 11%;
+    right: 4%;
+    width: 47%;
+    font-size: smaller;
+    display: none;
+}
+.item_ordenar{
+    --background: #E4E4E4;
+    color:#757575;
+    font-size: smaller;
+}
+.contenedor_subcategorias{
+    position: relative;
+    width: 50%;
+    left: 60px;
+    margin-top: 0px;
+    display: none;
+}
+.item_menu_subcategoria{
+    --background: white;
+      
+    width: 100%;
+    
+    height: 30px;
+}
+.titulo_subcategoria{
+    color: #757575; 
+    font-size: small;
+}

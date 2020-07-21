@@ -1,0 +1,36 @@
+<body ng-app="starter">
+  <app-header titulo = "Emark" iconos ="1" usuarioNombre ="Nombre Usuario" fotoPerfil="sin-foto.png"></app-header>
+  <app-searchbar></app-searchbar>
+  <ion-content id="contenedor_principal">
+    <div id="contenedor_boton_atras">
+      <ion-button fill="clear">
+        <ion-icon name="arrow-back-outline" class="item_boton_atras"></ion-icon>
+      </ion-button>
+      <ion-chip class="item_boton_atras">
+        <ion-label>Producto</ion-label>
+      </ion-chip>
+    </div>
+    <div id="contenedor_carrusel">
+
+    </div>
+    <div id="contenedor_producto_informacion">
+
+    </div>
+    <footer>
+      <div id="contedor_foorer">
+      <ion-label id="foorer_precio">CRC{{producto.precio}}</ion-label>
+      <div id="foorer_cantidad">
+        <ion-icon name="remove-circle" class="item_boton_atras" size="small"></ion-icon>
+        <ion-chip class="item_boton_atras">
+          <label id="cantidad_producto">1</label>
+        </ion-chip>
+        <ion-icon name="add-circle" class="item_boton_atras" size="small" ></ion-icon>
+      </div>
+      <ion-chip id="foorer_chip_carrito">
+        <ion-label>Agregar al carrito</ion-label>
+        <ion-icon name="add-circle" size="small" color="white"></ion-icon>
+      </ion-chip>
+    </div>
+    </footer>
+  </ion-content>
+</body>
