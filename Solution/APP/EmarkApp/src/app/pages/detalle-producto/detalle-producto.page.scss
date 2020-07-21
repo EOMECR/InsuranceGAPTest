@@ -2,7 +2,7 @@
     --background: white;
 }
 #contenedor_boton_atras{
-    position: absolute;
+    position: relative;
     width: 100%;
     display: flex;
     align-items: center;
@@ -11,32 +11,76 @@
     --color: black;
     color: black;
 }
+#chip_producto{
+    border: 1px solid black;
+}
+#contenedor_carrusel{
+    position: relative;
+    top: 10px;
+    width: 80%;
+    height: 40%;
+    left: 10%;
+    color: black;
+}
+#contenedor_slite{
+    position: relative;
+    top: 5px;
+    padding: 0px;
+    width: 100%;
+    height: 90%;
+}
+.slite{
+    height: 100%;
+    width: 50%;
+    padding: 0px;
+    margin-bottom: 0px auto;
+}
+
+#contenedor_producto_informacion{
+    position: relative;
+    width: 80%;
+    top: 10px;
+    height: 30%;
+    left: 10%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
 footer{
     position: fixed;
     bottom: 0px;
     width: 100%;
-    height: 5%;
-    
+    height: 10%;
+    display: fixed;
+    align-items: center;
 }
 #contedor_foorer{
     position: relative;
+    width: 346px;
+    height: 100%;
     display: flex;
     align-items: center;
     margin:0px auto;
 }
 
 #foorer_cantidad{
+    position: relative;
     display: flex;
     align-items: center;
-    margin-left: 5%;
+    margin-left: 6%;
 }
 #foorer_chip_carrito{
+    position: relative;
     --background: #0080FF;
     position: relative;
     color: white;
     float: right;
     margin-left: 5%;
 }
+#agregarCarrito{
+    font-size: smaller;
+}
 #foorer_precio{
+    position: relative;
     color: black;
+    
 }
